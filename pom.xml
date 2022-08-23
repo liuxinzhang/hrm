@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>hrm-common</module>
+        <module>hrm-model</module>
     </modules>
 
     <packaging>pom</packaging>
