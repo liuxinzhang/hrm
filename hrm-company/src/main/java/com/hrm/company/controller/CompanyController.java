@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author elijah
@@ -34,7 +34,7 @@ public class CompanyController {
      * 添加企业
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Result add(@RequestBody Company company) throws Exception {
+    public Result add(@RequestBody Company company) {
         company.setBalance(0.0);
         company.setCreateTime(LocalDateTime.now());
         companyService.save(company);
@@ -45,7 +45,7 @@ public class CompanyController {
      * 根据id更新企业信息
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Result update(@PathVariable(name = "id") String id, @RequestBody Company company) throws Exception {
+    public Result update(@PathVariable(name = "id") String id, @RequestBody Company company) {
         Company one = companyService.getById(id);
         one.setName(company.getName());
         one.setRemarks(company.getRemarks());
@@ -59,22 +59,25 @@ public class CompanyController {
      * 根据id删除企业信息
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Result delete(@PathVariable(name = "id") String id) throws Exception {
+    public Result delete(@PathVariable(name = "id") String id) {
         companyService.removeById(id);
         return Result.SUCCESS();
     }
+
     /**
-     * 根据ID获取公司信息 */
+     * 根据ID获取公司信息
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Result findById(@PathVariable(name = "id") String id) throws Exception {
+    public Result findById(@PathVariable(name = "id") String id) {
         Company company = companyService.getById(id);
         return new Result(ResultCode.SUCCESS, company);
     }
 
     /**
-     * 获取企业列表 */
+     * 获取企业列表
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Result findAll() throws Exception {
+    public Result findAll() {
         List<Company> companyList = companyService.list();
         return new Result(ResultCode.SUCCESS, companyList);
     }
